@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly_express as px
 
-crashes = pd.read_csv('app_and_dataset\crashdata2011-2020.csv', sep=',')
+crashes = pd.read_csv('C:\\Users\\moise\\Sprint-4\\crashdata2011-2020.csv', sep=',')
 
 # getting rid of unnecessary columns
 columns_to_drop = ['Name', 'TcrNumber', 'ProximityToIntersection', 'DirectionFromIntersection', 'Comment', 'ShortFormFlag', 'Distance', 'PedestrianDirectionFrom', 'PedestrianDirectionTo']
