@@ -4,18 +4,14 @@ import plotly_express as px
 
 
 try:
-    crashes = pd.read_csv('C:/Users/moise/Sprint-4/crashdata2011-2020.csv', sep=',')
+    crashes = pd.read_csv('C:/Users/moise/Sprint-4/crashdata2021-present.csv', sep=',')
 except:
-    crashes = pd.read_csv('/etc/secrets/crashdata2011-2020.csv', sep=',')
-
-# getting rid of unnecessary columns
-columns_to_drop = ['Name', 'TcrNumber', 'ProximityToIntersection', 'DirectionFromIntersection', 'Comment', 'ShortFormFlag', 'Distance', 'PedestrianDirectionFrom', 'PedestrianDirectionTo']
-crashes = crashes.drop(columns_to_drop, axis=1)
+    crashes = pd.read_csv('/etc/secrets/crashdata2021-present.csv', sep=',')
 
 #changing CrashDateTime to datetime data type
 crashes['CrashDateTime'] = pd.to_datetime(crashes['CrashDateTime'], format='%m/%d/%Y %H:%M')
 
-st.header('Crashes in San Jose(2011-2020)')
+st.header('Crashes in San Jose(2021-present)')
 st.dataframe(crashes)
 
 st.header('Crashes by hour of day and month')
