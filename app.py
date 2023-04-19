@@ -2,11 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly_express as px
 
-
-try:
-    crashes = pd.read_csv('C:/Users/moise/Sprint-4/crashdata2021-present.csv', sep=',')
-except:
-    crashes = pd.read_csv('/etc/secrets/crashdata2021-present.csv', sep=',')
+crashes = pd.read_csv('/etc/secrets/crashdata2021-present.csv', sep=',')
 
 #changing CrashDateTime to datetime data type
 crashes['CrashDateTime'] = pd.to_datetime(crashes['CrashDateTime'], format='%m/%d/%Y %H:%M')
