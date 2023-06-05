@@ -19,8 +19,8 @@ crashes['CrashDateTime'] = pd.to_datetime(crashes['CrashDateTime'], format='%m/%
 columns_to_drop = ['Name', 'TcrNumber', 'ProximityToIntersection', 'DirectionFromIntersection', 'Comment', 'ShortFormFlag', 'Distance', 'PedestrianDirectionFrom', 'PedestrianDirectionTo']
 crashes = crashes.drop(columns_to_drop, axis=1)
 
-st.header('Crashes in San Jose(2021-present)')
 st.dataframe(crashes)
+st.header('Crashes in San Jose(2021-present)')
 
 st.header('Crashes by hour of day and month')
 
@@ -50,6 +50,7 @@ else:
 #making scatter plot showing the change in injuries throughout the years by month
 st.header('crash injuries and fatalities through out the years')
 crashes['CrashYearMonth'] = crashes['CrashDateTime'].dt.to_period('M').astype(str)
-fig_3 = px.scatter(crashes, x='CrashYearMonth', y=['MinorInjuries', 'ModerateInjuries', 'SevereInjuries', 'FatalInjuries'], title='Injuries by Year')
-fig_3.update_layout(xaxis_title='Crash Year and Month')
+injuries_by_year_month = crashes.groupby('CrashYearMonth')[['MinorInjuries', 'ModerateInjuries', 'SevereInjuries', 'FatalInjuries']].sum().reset_index()
+fig_3 = px.scatter(injuries_by_year_month, x='CrashYearMonth', y=['MinorInjuries', 'ModerateInjuries', 'SevereInjuries', 'FatalInjuries'], title='Injuries by Year')
+fig_3.update_layout(xaxis_title='Crash Year and Month', yaxis_title='Injuries')
 st.write(fig_3)
